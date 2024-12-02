@@ -1,6 +1,6 @@
 import { CONFIG } from 'src/config-global';
 
-import { BrandCreateView } from 'src/sections/Brand/view';
+import { BrandCreateView } from 'src/sections/brand/view';
 
 // ----------------------------------------------------------------------
 

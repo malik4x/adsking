@@ -1,17 +1,20 @@
-'use client';
+'use client'; // For client-side rendering
 
-import { paths } from 'src/routes/paths';
-
+import React, { useState } from 'react';
 import { DashboardContent } from 'src/layouts/dashboard';
-
+import Typography from '@mui/material/Typography';
 import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
-
 import { BrandNewEditForm } from './brand-new-edit-form';
 import { WebsiteScannerBox } from './website-scanner';
 
-// ----------------------------------------------------------------------
-
 export function BrandCreateView() {
+  const [fetchTrigger, setFetchTrigger] = useState('');
+
+  const handleSuccessfulPost = (websiteLink) => {
+    console.log('Setting fetchTrigger:', websiteLink); // Debugging
+    setFetchTrigger(websiteLink);
+  };
+
   return (
     <DashboardContent>
       <CustomBreadcrumbs
@@ -19,8 +22,8 @@ export function BrandCreateView() {
         links={[{ name: 'Dashboard' }, { name: 'Brand' }, { name: 'New Brand' }]}
         sx={{ mb: { xs: 3, md: 5 } }}
       />
-      <WebsiteScannerBox />
-      <BrandNewEditForm />
+      <WebsiteScannerBox onSuccessfulPost={handleSuccessfulPost} />
+      <BrandNewEditForm fetchTrigger={fetchTrigger} />
     </DashboardContent>
   );
 }

@@ -170,6 +170,10 @@ export const paths = {
         edit: `${ROOTS.DASHBOARD}/job/${MOCK_ID}/edit`,
       },
     },
+    brand: {
+      root: `${ROOTS.DASHBOARD}/brand`,
+      new: `${ROOTS.DASHBOARD}/brand/new`,
+    },
     tour: {
       root: `${ROOTS.DASHBOARD}/tour`,
       new: `${ROOTS.DASHBOARD}/tour/new`,

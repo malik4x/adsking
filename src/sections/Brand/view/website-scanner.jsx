@@ -10,7 +10,7 @@ import axios from 'axios';
 // Regex for validating a website link or domain
 const urlRegex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}(\/[^\s]*)?$/;
 
-export function WebsiteScannerBox() {
+export function WebsiteScannerBox({ onSuccessfulPost }) {
   const [websiteLink, setWebsiteLink] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -39,10 +39,11 @@ export function WebsiteScannerBox() {
 
     try {
       // Send the website link to the backend
-      await axios.post('http://127.0.0.1:8000/send-website-url/', { url: websiteLink });
+      await axios.post('http://127.0.0.1:8000/fetch-website-details/', { url: websiteLink });
+      onSuccessfulPost(websiteLink); // Notify the parent component
       setIsLoading(false);
     } catch (error) {
-      console.error('Error while sending the website link', error);
+      console.error('Error while sending the website link:', error);
       setError('Error sending the website link. Please try again.');
       setIsLoading(false);
     }
